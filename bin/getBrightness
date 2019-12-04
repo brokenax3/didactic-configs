@@ -1,8 +1,0 @@
-#!/bin/bash
-
-level="$(brightnessctl -d intel_backlight g)"
-max="$(brightnessctl -d intel_backlight m)"
-
-levelp="$(((level * 100) / max))"
-
-echo ""$levelp"%"
