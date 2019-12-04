@@ -1,0 +1,80 @@
+#!/bin/bash
+
+# Bash script to automate pdfgrep -> txt
+
+#------------------------------------------------------------
+#-							---
+#-	search-pdf					---
+#-							----
+#-							---
+#-		by Mark					--
+#------------------------------------------------------------
+
+
+# Definition of Variables
+file_location="/externalDrive/Documents/Projects/pdfGrep"
+file_count="$(ls "$file_location" | wc -l)"
+index=($file_location/*.pdf)
+
+# Organizing Text into .txt files
+organize(){
+
+	for ((i=0; i<${#index[@]}; i++)); do
+		file_name="${index[$i]#"$file_location/"}"
+		pdfgrep -h -i --cache $searchTerm "${index[$i]}" > "$file_name".txt
+		echo "$file_name organized ... "
+	done
+	echo "Files organized ... "
+}
+
+# Search Function
+search(){
+
+	echo "Input search term ... "
+	read searchTerm
+	
+	# Uses pdfgrep to search defined location
+	pdfgrep --count --cache $searchTerm $file_location/*.pdf
+}
+
+# Prompt Function
+prompt(){
+
+	echo "Do you want to continue ? (y/n) "
+	while read ifcontinue; do
+		case $ifcontinue in
+			y)
+				continue=1; break
+				;;
+			n)
+				continue=0; break
+				;;
+			*)
+				echo "Invalid Input"
+				echo "Do you want to continue ? (y/n) "
+				;;
+		esac
+	done
+	return $continue
+}
+
+# Main Function
+main(){
+	
+	echo "------------------ search-pdf ----------------"
+	echo "$file_count of files found in $file_location"
+	
+	search
+	organize
+	echo "Done. "
+}
+
+# Actual Execution
+while :;do
+
+	main
+	prompt
+	if [ $?==0 ]; then break; fi
+done
+
+
