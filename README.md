@@ -1,2 +1,8 @@
-# didactic-scripts
-Useful scripts for Arch Linux setup.
+# Useful Scripts
+List of Scripts:
+- dmenu_recency
+- getBrightness
+- getVolume
+- i3exit
+- README.md
+- update-grub
