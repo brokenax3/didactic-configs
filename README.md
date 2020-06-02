@@ -1,3 +1,5 @@
+These are the config files for personal use.
+
 ## Scripts
 List of Scripts :
 - dmenu_recency
