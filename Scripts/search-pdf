@@ -1,80 +1,81 @@
 #!/bin/bash
 
-# Bash script to automate pdfgrep -> txt
+# Bash Script Wrapper for PDF-Grep
 
-#------------------------------------------------------------
-#-							---
-#-	search-pdf					---
-#-							----
-#-							---
-#-		by Mark					--
-#------------------------------------------------------------
+# Request Directory
+directory(){
 
+    while :;do
+    # Option Selecions
+        case $select in
 
-# Definition of Variables
-file_location="/externalDrive/Documents/Projects/pdfGrep"
-file_count="$(ls "$file_location" | wc -l)"
-index=($file_location/*.pdf)
+        "-d") echo -n "Input Directory : "
+            read "directory"
 
-# Organizing Text into .txt files
-organize(){
+            if [ -d "$directory" ]; then
 
-	for ((i=0; i<${#index[@]}; i++)); do
-		file_name="${index[$i]#"$file_location/"}"
-		pdfgrep -h -i --cache $searchTerm "${index[$i]}" > "$file_name".txt
-		echo "$file_name organized ... "
-	done
-	echo "Files organized ... "
+                echo "Found $directory."
+                file=$directory
+                break
+            else
+
+                echo "Directory not found."
+            fi
+            ;;
+        "-f") echo -n "Input File : "
+            read "file"
+            if [ -f "$file" ]; then
+
+                echo "Found $file."
+                option=""
+                break
+            else
+
+                echo "File not found."
+            fi
+            ;;
+        "-h") echo "--------------------- Help --------------------"
+            echo "searchpdf [option]\n"
+            echo -e "Options :\n\n\t -f Search file\n\t -d Search directory"
+            exit
+            ;;
+        *) echo "Option not found."
+            ;;
+        esac
+    done
 }
 
 # Search Function
 search(){
 
-	echo "Input search term ... "
-	read searchTerm
-	
-	# Uses pdfgrep to search defined location
-	pdfgrep --count --cache $searchTerm $file_location/*.pdf
-}
+    echo -n "Search term : "
+    read searchTerm
+    
+    # Uses pdfgrep to search defined location
+    if [ "$select" = "-d" ]; then
 
-# Prompt Function
-prompt(){
+        pdfgrep --cache -i -n -r "$searchTerm" "$file"
+    elif [ "$select" = "-f" ]; then
 
-	echo "Do you want to continue ? (y/n) "
-	while read ifcontinue; do
-		case $ifcontinue in
-			y)
-				continue=1; break
-				;;
-			n)
-				continue=0; break
-				;;
-			*)
-				echo "Invalid Input"
-				echo "Do you want to continue ? (y/n) "
-				;;
-		esac
-	done
-	return $continue
+        pdfgrep --cache -i -n "$searchTerm" "$file"
+    fi
 }
 
 # Main Function
 main(){
 	
-	echo "------------------ search-pdf ----------------"
-	echo "$file_count of files found in $file_location"
-	
-	search
-	organize
-	echo "Done. "
+    echo "------------------ search-pdf -----------------"
+    
+    search
+
+    echo "--------------------- Done --------------------"
 }
 
 # Actual Execution
+select=$1
+directory
+
 while :;do
-
-	main
-	prompt
-	if [ $?==0 ]; then break; fi
+    
+    main
 done
-
-

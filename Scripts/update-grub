@@ -1,4 +1,2 @@
 #!/bin/bash
-
-# Update Grub
-grub-mkconfig -o /boot/grub/grub.cfg
+exec grub-mkconfig -o /boot/grub/grub.cfg
