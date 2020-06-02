@@ -1,0 +1,15 @@
+% Header File
+
+% Disable Floating Figures
+\usepackage{float}
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2] {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
+
+% Geometry of page
+\usepackage[margin=2cm,nohead]{geometry}
+
