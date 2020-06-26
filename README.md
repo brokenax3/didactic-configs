@@ -9,6 +9,7 @@ List of Scripts :
 - getVolume
 - i3exit
 - matlab-term
+- pdfsort
 - search-pdf
 - update-grub
 
@@ -33,5 +34,7 @@ pandoc --toc --toc-depth=4 -V geometry:margin=1in -f markdown-raw_tex -H customs
 
 pandoc --toc --toc-depth=4 --highlight-style matlab.theme -V mainfont='Liberation Sans' -V monofont='Hack' -f markdown-raw_tex -H customsheet.tex report.md -o labreport.pdf --pdf-engine=xelatex
 ```
+
 ## Themes
 - oomux-gruvbox-custom
+- oomox-onedark-Test
