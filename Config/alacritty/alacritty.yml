@@ -12,7 +12,7 @@ env:
   # available, otherwise `xterm-256color` is used.
   TERM: alacritty
 
-#window:
+  #window:
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -34,11 +34,11 @@ env:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   #padding:
-  #  x: 0
-  #  y: 0
+  #x: 10
+  #y: 10
 
   # Spread additional padding evenly around the terminal content.
-  #dynamic_padding: false
+  #dynamic_padding: true
 
   # Window decorations
   #
@@ -91,7 +91,7 @@ scrolling:
 font:
   # Normal (roman) font face
   normal:
-    family: Hack
+    family: Iosevka
     style: Regular
 
   # Bold font face
@@ -100,7 +100,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Hack
+    family: Iosevka
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -111,7 +111,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Hack
+    family: Iosevka
 
     # The `style` can be specified to pick a specific face.
     style: Italic
@@ -122,13 +122,13 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Hack
+    family: Iosevka
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
 
   # Point size
-  #size: 11.0
+  size: 14.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -146,34 +146,36 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
-# Colors (Gruvbox dark)
+# Colors (One Dark)
 colors:
   # Default colors
   primary:
-    background: '#1d2021'
-    foreground: '#ebdbb2'
+    background: '#282c34'
+    foreground: '#abb2bf'
 
   # Normal colors
   normal:
-    black:   '#282828'
-    red:     '#cc241d'
-    green:   '#98971a'
-    yellow:  '#d79921'
-    blue:    '#458588'
-    magenta: '#b16286'
-    cyan:    '#689d6a'
-    white:   '#a89984'
+    # NOTE: Use '#131613' for the `black` color if you'd like to see
+    # black text on the background.
+    black:   '#282c34'
+    red:     '#e06c75'
+    green:   '#98c379'
+    yellow:  '#d19a66'
+    blue:    '#61afef'
+    magenta: '#c678dd'
+    cyan:    '#56b6c2'
+    white:   '#abb2bf'
 
   # Bright colors
   bright:
-    black:   '#928374'
-    red:     '#fb4934'
-    green:   '#b8bb26'
-    yellow:  '#fabd2f'
-    blue:    '#83a598'
-    magenta: '#d3869b'
-    cyan:    '#8ec07c'
-    white:   '#ebdbb2'
+    black:   '#5c6370'
+    red:     '#e06c75'
+    green:   '#98c379'
+    yellow:  '#d19a66'
+    blue:    '#61afef'
+    magenta: '#c678dd'
+    cyan:    '#56b6c2'
+    white:   '#ffffff'
 
 # Visual Bell
 #

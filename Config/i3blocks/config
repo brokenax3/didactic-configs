@@ -11,13 +11,13 @@ separator=true
 separator_block_width=15
 
 [greetings]
-color=#83A598
+color=#ABB2BF
 command=echo "Hello, $USER!"
 interval=once
 
 [getYTM]
-command=$SCRIPT_DIR/getYTM
-interval=10
+command=$SCRIPT_DIR/getSpotify
+interval=5
 
 [wifi]
 command=$SCRIPT_DIR/wifi
@@ -33,7 +33,7 @@ LABEL=BAT
 #BAT_NUMBER=0
 
 [calendar]
-color=#EBDBB2
+color=#ABB2BF
 command=$SCRIPT_DIR/calendar
 interval=60
 LABEL=
