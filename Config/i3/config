@@ -1,23 +1,26 @@
 # i3 config file (v4)
-
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Iosevka Regular 14
+font pango:Scientifica Bold 15
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 1
-default_floating_border pixel 1
+default_border pixel 2
+default_floating_border pixel 2
 
 # i3 Stuff
 set $refresh_i3status killall -SIGUSR1 i3status
+
+# Screensaver Settings
+# exec_always --no-startup-id xss-lock locker
 
 # ----------------------------------------------------------------------------------------------------
 #                                     Applications and Autostart
 # ----------------------------------------------------------------------------------------------------
 # Startup Applications
 exec_always --no-startup-id autotiling
+# exec --no-startup-id picom -b
 exec --no-startup-id nm-applet
 exec --no-startup-id lxsession
 exec --no-startup-id fcitx
@@ -28,6 +31,7 @@ exec --no-startup-id xrandr --dpi 70
 exec --no-startup-id xfce4-clipman
 exec --no-startup-id blueman-applet
 exec --no-startup-id pdfsort
+exec nitrogen --restore &
 
 # Brightness and Audio Hotkeys
 bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5 && $refresh_i3status | notify-send -t 300 "$(pamixer --get-volume-human)"
@@ -41,19 +45,19 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl -d intel_backli
 floating_modifier $mod
 
 # Application Shorcuts
-bindsym $mod+F2 exec chromium
+bindsym $mod+F2 exec google-chrome-stable
 bindsym $mod+F3 exec pcmanfm
-bindsym $mod+F4 exec alacritty -e nvim '/externalDrive/Documents/Vim/index.md'
-bindsym $mod+F5 exec chromium --incognito
+bindsym $mod+F4 exec gvim -o '/externalDrive/Documents/Vim/index.md'
+bindsym $mod+F5 exec google-chrome-stable --incognito
 bindsym $mod+F6 exec spotify
 bindsym $mod+F7 exec thunderbird
 bindsym $mod+F11 exec xournalpp  
 bindsym $mod+Return exec alacritty
 bindsym $mod+Ctrl+m exec pavucontrol
-bindsym $mod+Print exec maim --hidecursor ~/Pictures/$(date "+%d-%m-%s").png
-bindsym $mod+Shift+s exec maim -s --hidecursor ~/Pictures/$(date "+%d-%m-%s").png 
-bindsym $mod+Shift+A exec maim -s ~/Documents/Vim/engineering/images/$(date "+%d-%m-%s").png 
-bindsym $mod+Shift+w exec chromium "https://web.whatsapp.com/"
+bindsym $mod+Print exec maim --hidecursor ~/Pictures/$(date "+%s-%d-%m-%y").png
+bindsym $mod+Shift+s exec maim -s --hidecursor ~/Pictures/$(date "+%s-%d-%m-%y").png 
+bindsym $mod+Shift+A exec maim -s --hidecursor --format png /dev/stdout | xclip -selection clipboard -t image/png 
+bindsym $mod+Shift+w exec google-chrome-stable "https://web.whatsapp.com/"
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -121,15 +125,16 @@ bindsym $mod+Mod1+z focus child ; exec notify-send -t 480 "Focus Child"
 # ----------------------------------------------------------------------------------------------------
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8::Mail"
-set $ws9 "9::Music"
+set $ws1 "1:一"
+set $ws2 "2:二"
+set $ws3 "3:三"
+set $ws4 "4:四"
+set $ws5 "5:五"
+set $ws6 "6:六"
+set $ws7 "7:七"
+set $ws8 "8:八"
+set $ws9 "9:九"
+
 
 # Switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -168,10 +173,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink height 5 px or 5 ppt
-        bindsym semicolon resize grow width 5 px or 5 ppt
+        bindsym h resize shrink width 5 px or 5 ppt
+        bindsym j resize grow height 5 px or 5 ppt
+        bindsym k resize shrink height 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 5 px or 5 ppt
@@ -203,6 +208,7 @@ for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [title="SimpleScreenRecorder"] floating enable border normal
 for_window [class="Zathura"] focus child, layout stacking
+for_window [class="Hamster"] floating enable border normal
 
 # Assign applications to specific workspaces
 # Workspace 1
@@ -213,7 +219,6 @@ for_window [class="Zathura"] focus child, layout stacking
 # Workspace 6
 # Workspace 7
 # Workspace 8
-assign [class="Thunderbird"] $ws8
 # Workspace 9
 for_window [class="Spotify"] move to workspace $ws9
 
@@ -242,25 +247,74 @@ mode "$mode_system" {
 # ----------------------------------------------------------------------------------------------------
 # Colour Scheme for i3
 # class                 border  bground text    indicator child_border
-client.focused          #C678DD #282C34 #ABB2BF #282C34   #C678DD
-client.focused_inactive #555B68 #282C34 #ABB2BF #282C34   #555B68
-client.unfocused        #555B68 #282C34 #555B68 #282C34   #555B68
-client.urgent           #282C34 #E06B75 #ABB2BF #E06B75   #E06B75
-client.placeholder      #282C34 #282C34 #ABB2BF #282C34   #282C34
+client.focused          #C678DD #161822 #A3A9B4 #161822   #C678DD
+client.focused_inactive #44474D #161822 #A3A9B4 #161822   #44474D
+client.unfocused        #44474D #161822 #44474D #161822   #44474D
+client.urgent           #161822 #E06B74 #A3A9B4 #E06B74   #E06B74
+client.placeholder      #161822 #161822 #A3A9B4 #161822   #161822
 
-client.background       #282C34
+client.background       #161822
 
 bar {
+    strip_workspace_numbers yes
     status_command SCRIPT_DIR=~/.config/i3blocks/blocklets i3blocks
     colors {
-        background #282C34
-        statusline #ABB2BF
-        separator  #ABB2BF
+        background #161822
+        statusline #A3A9B4
+        separator  #A3A9B4
 
-        focused_workspace  #ABB2BF #282C34 #ABB2BF
-        active_workspace   #282C34 #282C34 #ABB2BF
-        inactive_workspace #282C34 #282C34 #ABB2BF
-        urgent_workspace   #282C34 #E06B75 #282C34
-        binding_mode       #282C34 #E06B75 #282C34
+        focused_workspace  #272A33 #272A33 #A3A9B4
+        active_workspace   #272A33 #272A33 #A3A9B4
+        inactive_workspace #161822 #161822 #A3A9B4
+        urgent_workspace   #161822 #E06B74 #161822
+        binding_mode       #161822 #E06B74 #161822
     }
 }
+
+# ----------------------------------------------------------------------------------------------------
+#                                     Gaps Settings
+# ----------------------------------------------------------------------------------------------------
+
+gaps inner 10
+gaps outer -2
+
+smart_gaps on
+
+# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
+
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+

@@ -45,9 +45,9 @@ echo $QUALITY% # short text
 if [[ $QUALITY -ge 80 ]]; then
     echo "#98C379"
 elif [[ $QUALITY -ge 60 ]]; then
-    echo "#E5C07B"
+    echo "#E5C07A"
 elif [[ $QUALITY -ge 40 ]]; then
-    echo "#E06C75"
+    echo "#FCA4B9"
 else
     echo "#ABB2BF"
 fi

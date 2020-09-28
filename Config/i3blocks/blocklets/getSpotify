@@ -6,10 +6,10 @@ name=$(xdotool getwindowname $playing | sed 's/ Premium//' )
 
 if [[ $name = "Spotify" ]]; then
 
-    print=" Paused ⏸ "
+    print=" Paused ⏸"
 elif [[ $name = "" ]]; then
 
-    print=" Not Playing ⏹ "
+    print=" Not Playing ■"
 else
 
     print=" ▶ $name "
@@ -19,10 +19,11 @@ echo $print # full text
 echo $print # short text
 
 # color
-if [[ $print -eq " Not Playing ⏹ " ]]; then
-    echo "#98C379"
-
-else
+if [ "$print" = " Not Playing ■" ]; then
+    echo "#E06B74"
+elif [ "$print" = " Paused ⏸" ]; then
     echo "#C678DD"
+else
+    echo "#56B6C2"
 fi
     

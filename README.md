@@ -7,10 +7,16 @@ List of Scripts :
 - getBrightness
 - getMuted
 - getVolume
+- hbd-convert
 - i3exit
+- locker
+- matlab
 - matlab-term
+- optimus.sh
 - pdfsort
 - search-pdf
+- set-intel.sh
+- set-nvidia.sh
 - update-grub
 
 ## Config Files
@@ -38,3 +44,4 @@ pandoc --toc --toc-depth=4 --highlight-style matlab.theme -V mainfont='Liberatio
 ## Themes
 - oomux-gruvbox-custom
 - oomox-onedark-Test
+- oomox-onedark-Darker

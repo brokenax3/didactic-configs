@@ -8,12 +8,21 @@
 
 # Global properties
 separator=true
-separator_block_width=15
+separator_block_width=25
 
-[greetings]
-color=#ABB2BF
-command=echo "Hello, $USER!"
-interval=once
+[unfog]
+command=hamster current
+interval=10
+
+[calendar]
+color=#A3A9B4
+command=$SCRIPT_DIR/calendar
+interval=60
+LABEL=
+DATEFMT=+%Y-%m-%d %H:%M
+# SHORTFMT=+%H:%M:%S
+HEIGHT=180
+WIDTH=220
 
 [getYTM]
 command=$SCRIPT_DIR/getSpotify
@@ -32,14 +41,6 @@ LABEL=BAT
 #LABEL=⚡
 #BAT_NUMBER=0
 
-[calendar]
-color=#ABB2BF
-command=$SCRIPT_DIR/calendar
-interval=60
-LABEL=
-DATEFMT=+%Y-%m-%d %H:%M
-# SHORTFMT=+%H:%M:%S
-HEIGHT=180
-WIDTH=220
+
 
 
