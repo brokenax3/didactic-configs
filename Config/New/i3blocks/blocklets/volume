@@ -1,0 +1,17 @@
+#!/bin/bash
+
+
+sound=$(pamixer --get-volume-human | sed -s 's/\%//g')
+
+if [[ "$sound" == "muted" ]];then
+
+    echo " $sound "
+elif [[ $sound -lt 50 ]];then
+
+    echo " $sound% "
+elif [[ $sound -ge 50 ]];then
+
+    echo " $sound% "
+fi
+
+

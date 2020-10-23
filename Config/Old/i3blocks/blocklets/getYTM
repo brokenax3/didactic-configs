@@ -1,0 +1,25 @@
+#!/bin/bash
+
+playing=$(xdotool search --name " YouTube Music")
+
+name=$(xdotool getwindowname $playing | sed 's/- YouTube Music - Google Chrome//')
+
+if [[ -n $name ]]; then
+
+    print="Now Playing : $name"
+else
+
+    print="Not Playing"
+fi
+
+echo $print # full text
+echo $print # short text
+
+# color
+if [[ $print -eq "Not Playing" ]]; then
+    echo "#DB4740"
+
+else
+    echo "#B0B846"
+fi
+    

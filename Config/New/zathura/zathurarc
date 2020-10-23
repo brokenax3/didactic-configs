@@ -1,0 +1,44 @@
+set selection-clipboard clipboard
+
+set notification-error-bg       "#0A192E" # bg
+set notification-error-fg       "#9A53A2" # bright:red
+set notification-warning-bg     "#0A192E" # bg
+set notification-warning-fg     "#9370d0" # bright:yellow
+set notification-bg             "#0A192E" # bg
+set notification-fg             "#e063a1" # bright:green
+
+set completion-bg               "#0C1F38" # bg2
+set completion-fg               "#c9c4eb" # fg
+set completion-group-bg         "#0A192E" # bg1
+set completion-group-fg         "#1f324d" # gray
+set completion-highlight-bg     "#5a93ec" # bright:blue
+set completion-highlight-fg     "#0C1F38" # bg2
+
+# Define the color in index mode
+set index-bg                    "#0C1F38" # bg2
+set index-fg                    "#c9c4eb" # fg
+set index-active-bg             "#5a93ec" # bright:blue
+set index-active-fg             "#0C1F38" # bg2
+
+set inputbar-bg                 "#0A192E" # bg
+set inputbar-fg                 "#c9c4eb" # fg
+
+set statusbar-bg                "#0C1F38" # bg2
+set statusbar-fg                "#c9c4eb" # fg
+
+set highlight-color             "#FC9BA4" # bright:aqua
+set highlight-active-color      "#9370D0" # bright:orange
+
+set default-bg                  "#0A192E" # bg
+set default-fg                  "#c9c4eb" # fg
+set render-loading              true
+set render-loading-bg           "#0A192E" # bg
+set render-loading-fg           "#c9c4eb" # fg
+
+# Recolor book content's color
+set recolor-lightcolor          "#0A192E" # bg
+set recolor-darkcolor           "#c9c4eb" # fg
+set recolor                     false
+set recolor-keephue             true      # keep original color
+
+set font                        "Terminus 12"
