@@ -1,6 +1,6 @@
 #!/bin/sh
 lock() {
-    exec /usr/local/bin/locker
+    i3lock -n -ti /home/jack/Pictures/wallpaper.png
 }
 
 case "$1" in

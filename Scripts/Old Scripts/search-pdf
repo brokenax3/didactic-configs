@@ -34,10 +34,12 @@ directory(){
                 echo "File not found."
             fi
             ;;
-        *) echo "--------------------- Help --------------------"
-            echo -e "searchpdf [option]\n"
-            echo -e "Options :\n\t -f Search file\n\t -d Search directory\n"
+        "-h") echo "--------------------- Help --------------------"
+            echo "searchpdf [option]\n"
+            echo -e "Options :\n\n\t -f Search file\n\t -d Search directory"
             exit
+            ;;
+        *) echo "Option not found."
             ;;
         esac
     done

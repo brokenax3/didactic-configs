@@ -1,0 +1,3 @@
+!#/bin/bash
+
+echo "$(brightnessctl -d intel_backlight g)%"

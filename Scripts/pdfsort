@@ -18,13 +18,24 @@ tmp=/tmp/pdfDirectory
 
 inotifywait -m --format "%f" -e moved_to "$path" | while read file;do
 
-    if [[ $file == *.pdf ]];then
-        
-        if [[ ! -d "$tmp" ]];then mkdir "$tmp";fi
+    # Prevents looping Chrome as it keeps downloading the same file and opening it
+    #   without opening it.
+    if [[ $prevfile != $file ]];then
 
-        mv "$path/$file" "$tmp/$file"
+        if [[ $file == *.pdf ]];then
+            
+            if [[ ! -d "$tmp" ]];then mkdir "$tmp";fi
+
+            mv "$path/$file" "$tmp/$file"
+            nohup xdg-open "$tmp/$file" &> /dev/null &
+            notify-send -t 5000 "$file opened in Zathura"
+            prevfile=$file
+        fi
+    else
+
+        # Remove the newly downloaded file and open the previous file
+        rm "$path/$file"
         nohup xdg-open "$tmp/$file" &> /dev/null &
         notify-send -t 5000 "$file opened in Zathura"
-
     fi
 done
