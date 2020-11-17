@@ -1,8 +1,0 @@
-configuration {
-    width: 30;
-    lines: 12;
-    show-icons: true;
-    icon-theme: "Arc-X-D";
-}
-@import "onebliss.rasi"
-
