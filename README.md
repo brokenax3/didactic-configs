@@ -23,9 +23,9 @@ List of Scripts :
 - alacritty
 - dunst
 - i3
-- i3blocks
+- nvim
 - rofi
-- vimrc
+- termite
 - zathura
 
 ## Pandoc Customisation (MarkdownLatex -> pdf)
