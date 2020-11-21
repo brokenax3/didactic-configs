@@ -1,0 +1,57 @@
+[Default Applications]
+x-scheme-handler/http=userapp-Pale Moon.desktop
+x-scheme-handler/https=userapp-Pale Moon.desktop
+x-scheme-handler/ftp=userapp-Pale Moon.desktop
+x-scheme-handler/chrome=userapp-Pale Moon.desktop
+text/html=userapp-Pale Moon.desktop
+application/x-extension-htm=userapp-Pale Moon.desktop
+application/x-extension-html=userapp-Pale Moon.desktop
+application/x-extension-shtml=userapp-Pale Moon.desktop
+application/xhtml+xml=userapp-Pale Moon.desktop
+application/x-extension-xhtml=userapp-Pale Moon.desktop
+application/x-extension-xht=userapp-Pale Moon.desktop
+image/jpeg=viewnior.desktop;gpicview.desktop;
+image/png=viewnior.desktop;gpicview.desktop;
+text/plain=nvim.desktop
+x-scheme-handler/mailto=userapp-Thunderbird.desktop
+message/rfc822=userapp-Thunderbird.desktop
+application/pdf=org.pwmt.zathura.desktop
+application/x-bittorrent=deluge.desktop
+text/csv=gvim.desktop
+x-scheme-handler/webcal=google-chrome.desktop
+video/mp4=vlc.desktop
+text/markdown=nvim.desktop
+application/zip=xarchiver.desktop
+text/x-python=gvim.desktop
+x-scheme-handler/tg=userapp-Telegram Desktop-8KH4T0.desktop
+
+[Added Associations]
+x-scheme-handler/http=userapp-Pale Moon.desktop;
+x-scheme-handler/https=userapp-Pale Moon.desktop;
+x-scheme-handler/ftp=userapp-Pale Moon.desktop;
+x-scheme-handler/chrome=userapp-Pale Moon.desktop;
+text/html=userapp-Pale Moon.desktop;
+application/x-extension-htm=userapp-Pale Moon.desktop;
+application/x-extension-html=userapp-Pale Moon.desktop;
+application/x-extension-shtml=userapp-Pale Moon.desktop;
+application/xhtml+xml=userapp-Pale Moon.desktop;
+application/x-extension-xhtml=userapp-Pale Moon.desktop;
+application/x-extension-xht=userapp-Pale Moon.desktop;
+image/jpeg=viewnior.desktop;gpicview.desktop;
+image/png=viewnior.desktop;gpicview.desktop;
+text/plain=nvim.desktop;mousepad.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird.desktop;
+message/rfc822=userapp-Thunderbird.desktop;
+application/pdf=org.pwmt.zathura.desktop;epdfview.desktop;
+application/x-bittorrent=deluge.desktop;
+application/octet-stream=gvim.desktop;
+text/csv=gvim.desktop;
+video/mp4=vlc.desktop;
+text/markdown=nvim.desktop;gvim.desktop;
+application/zip=xarchiver.desktop;
+text/x-python=gvim.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-8KH4T0.desktop;
+application/x-executable=nvim-qt.desktop;
+
+[Removed Associations]
+text/plain=userapp-"NVIM-M98DU0.desktop;

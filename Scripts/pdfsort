@@ -33,8 +33,9 @@ inotifywait -m --format "%f" -e moved_to "$path" | while read file;do
         fi
     else
 
-        # Remove the newly downloaded file and open the previous file
-        rm "$path/$file"
+        # Remove the Old File and Open the Newly downloaded file
+        rm "$tmp/$file"
+        mv "$path/$file" "$tmp/$file"
         nohup xdg-open "$tmp/$file" &> /dev/null &
         notify-send -t 5000 "$file opened in Zathura"
     fi

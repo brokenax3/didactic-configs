@@ -21,7 +21,6 @@ exec_always --no-startup-id xss-lock blurlock
 ##############################
 exec --no-startup-id xrandr --output HDMI-0 --primary --auto --right-of eDP-1-1
 exec_always --no-startup-id autotiling
-exec --no-startup-id nitrogen --restore
 exec --no-startup-id start-pulseaudio-x11
 #exec --no-startup-id picom -b
 #exec_always --no-startup-id ff-theme-util
@@ -39,6 +38,7 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pdfsort
 exec --no-startup-id pa-applet
 exec --no-startup-id redshift-gtk
+exec --no-startup-id nitrogen --restore &
 
 # Brightness and Audio Hotkeys
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5 && pkill -RTMIN+10 i3blocks | notify-send -t 300 "$(pamixer --get-volume-human)"
@@ -54,11 +54,12 @@ floating_modifier $mod
 # Application Shorcuts
 bindsym $mod+F2 exec google-chrome-stable
 bindsym $mod+F3 exec pcmanfm
-bindsym $mod+F4 exec gvim -o '/externalDrive/Documents/Vim/index.md'
+bindsym $mod+F4 exec nvim-qt '/externalDrive/Documents/Vim/index.md'
 bindsym $mod+F5 exec google-chrome-stable --incognito
 bindsym $mod+F6 exec spotify
 bindsym $mod+F11 exec xournalpp  
-bindsym $mod+F12 exec gvim
+bindsym $mod+F12 exec nvim-qt
+#bindsym $mod+Return exec termite
 bindsym $mod+Return exec alacritty
 bindsym $mod+Ctrl+m exec pavucontrol
 

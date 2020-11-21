@@ -31,6 +31,7 @@ Plug 'farmergreg/vim-lastplace'
 Plug 'junegunn/vim-easy-align'
 Plug 'Konfekt/FastFold'
 Plug 'easymotion/vim-easymotion'
+Plug 'mhinz/vim-startify'
 
 " Completion and Syntax Highlighting
 Plug 'ycm-core/YouCompleteMe'
@@ -116,6 +117,9 @@ au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm al
 
 " You can't stop me
 " cmap w!! w !sudo tee %
+
+" GUI Font
+set guifont=Input\ Mono\ Compressed:h13
 
 "----------------------------------------------------------------------------------
 " Mappings {{{1
