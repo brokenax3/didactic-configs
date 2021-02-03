@@ -11,7 +11,7 @@ default_border pixel 2
 default_floating_border none
 
 # i3 Stuff
-set $refresh_i3status killall -SIGUSR1 i3status
+#set $refresh_i3status killall -SIGUSR1 i3status
 
 # Screensaver Settings
 exec_always --no-startup-id xss-lock blurlock
@@ -21,32 +21,31 @@ exec_always --no-startup-id xss-lock blurlock
 ##############################
 exec --no-startup-id xrandr --output HDMI-0 --primary --auto --right-of eDP-1-1
 exec_always --no-startup-id autotiling
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id start-pulseaudio-x11
 #exec --no-startup-id picom -b
 #exec_always --no-startup-id ff-theme-util
 #exec_always --no-startup-id fix_xcursor
 #exec --no-startup-id xautolock -time 10 -locker blurlock
-exec --no-startup-id clipit
+exec --no-startup-id xfce4-clipman
 exec --no-startup-id nm-applet
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3
-#exec --no-startup-id brightnessctl -d intel_backlight s 100
-exec --no-startup-id pamixer --set-volume 25
-exec --no-startup-id xrandr --output HDMI-1-2 --primary --auto --right-of eDP1
+exec --no-startup-id lxsession
+exec --no-startup-id fcitx5
+exec --no-startup-id brightnessctl -d intel_backlight s 20%
+#exec --no-startup-id pamixer --set-volume 25
 exec --no-startup-id blueman-applet
-exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pdfsort
 exec --no-startup-id pa-applet
 exec --no-startup-id redshift-gtk
 exec --no-startup-id nitrogen --restore &
 
 # Brightness and Audio Hotkeys
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5 && pkill -RTMIN+10 i3blocks | notify-send -t 300 "$(pamixer --get-volume-human)"
-#bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5 && pkill -RTMIN+10 i3blocks  | notify-send -t 300 "$(pamixer --get-volume-human)"
-#bindsym XF86AudioMute exec --no-startup-id pamixer -t && pkill -RTMIN+10 i3blocks | notify-send -t 480 "$(pamixer --get-volume-human)"
-## bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status 
-#bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -d intel_backlight s +10 | notify-send -t 480 "Brightness: $(getBrightness)"
-#bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl -d intel_backlight s 10- | notify-send -t 480 "Brightness: $(getBrightness)"
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5 | notify-send -t 300 "$(pamixer --get-volume-human)"
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5 | notify-send -t 300 "$(pamixer --get-volume-human)"
+bindsym XF86AudioMute exec --no-startup-id pamixer -t | notify-send -t 480 "$(pamixer --get-volume-human)"
+# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status 
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -d intel_backlight s +5% | notify-send -t 480 "Brightness: $(getBrightness)"
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl -d intel_backlight s 5%- | notify-send -t 480 "Brightness: $(getBrightness)"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -67,7 +66,7 @@ bindsym $mod+Ctrl+m exec pavucontrol
 # Print Screen
 bindsym $mod+Print exec maim --hidecursor ~/Pictures/$(date "+%s").png
 # Print Screen with Selection
-bindsym $mod+Shift+s exec maim -s --hidecursor ~/Pictures/$(date "+%s").png 
+bindsym $mod+Shift+S exec maim -s --hidecursor ~/Pictures/$(date "+%s").png 
 # Print Screen with Selection to Clipboard
 bindsym $mod+Shift+A exec maim -s --hidecursor --format png /dev/stdout | xclip -selection clipboard -t image/png 
 # Print Screen with Selection to Clipboard with Delay
@@ -221,7 +220,6 @@ bindsym $mod+r mode "resize"
 #########################
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
 for_window [class="Lightdm-gtk-greeter-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border none
@@ -287,42 +285,42 @@ set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
 # class                 border  bground text    indicator child_border
-client.focused          #E39B7B #465258 #D8CAAC #E39B7B   #E39B7B
-client.focused_inactive #465258 #323D43 #999F93 #465258   #465258
-client.unfocused        #465258 #323D43 #999F93 #465258   #465258
-client.urgent           #323D43 #E68183 #323D43 #E68183   #E68183
-client.placeholder      #323D43 #323D43 #D8CAAC #E39B7B   #E39B7B
+client.focused          #FF79C6 #44475A #F8F8F2 #FF79C6   #FF79C6
+client.focused_inactive #44475A #282A36 #70706D #44475A   #44475A
+client.unfocused        #44475A #282A36 #70706D #44475A   #44475A
+client.urgent           #282A36 #FF5555 #282A36 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #FF79C6   #FF79C6
 
-client.background       #323D43
+client.background       #282A36
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
-bar {
-    i3bar_command i3bar
-    status_command i3status
-    position bottom
-
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
-
-    bindsym button4 nop
-    bindsym button5 nop
-#   font xft:URWGothic-Book 11
-    strip_workspace_numbers yes
-
-    colors {
-        background #323d43
-        statusline #d8caac
-        separator  #576268
-
-#                           border  backgr. text
-        focused_workspace  #87c095 #87c095 #323d43
-        active_workspace   #87c095 #323d43 #d8caac
-        inactive_workspace #323d43 #323d43 #d8caac
-        binding_mode       #e39b7b #e39b7b #323d43
-        urgent_workspace   #e68183 #e68183 #323d43
-    }
-}
+#bar {
+#    i3bar_command i3bar
+#    status_command i3status
+#    position bottom
+#
+### please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+##	tray_output primary
+##	tray_output eDP1
+#
+#    bindsym button4 nop
+#    bindsym button5 nop
+##   font xft:URWGothic-Book 11
+#    strip_workspace_numbers yes
+#
+#    colors {
+#        background #323d43
+#        statusline #d8caac
+#        separator  #576268
+#
+##                           border  backgr. text
+#        focused_workspace  #87c095 #87c095 #323d43
+#        active_workspace   #87c095 #323d43 #d8caac
+#        inactive_workspace #323d43 #323d43 #d8caac
+#        binding_mode       #e39b7b #e39b7b #323d43
+#        urgent_workspace   #e68183 #e68183 #323d43
+#    }
+#}
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
@@ -330,11 +328,10 @@ bindsym $mod+m bar mode toggle
 #################
 # Gaps Settings #
 #################
-#
 gaps inner 10
 gaps outer -2
-
-smart_gaps on
+gaps top 15
+#smart_gaps on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 

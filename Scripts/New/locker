@@ -1,0 +1,39 @@
+#!/bin/sh
+
+# Define some colours.
+aqua="#FCD3B9"
+black="#0c1f38"
+blue="#5A93EC"
+green="#E063A1"
+purple="#FC9BA4"
+red="#9A53A2"
+white="#c9c4eb"
+yellow="#9370D0"
+
+lock() {
+    i3lock \
+    --insidevercolor=$black \
+    --ringvercolor=$yellow \
+    --insidewrongcolor=$black \
+    --ringwrongcolor=$red \
+    --insidecolor=$black \
+    --ringcolor=$black \
+    --linecolor=$black \
+    --separatorcolor=$blue \
+    --verifcolor=$yellow \
+    --wrongcolor=$red \
+    --timecolor=$white \
+    --datecolor=$white \
+    --layoutcolor=$aqua \
+    --keyhlcolor=$white \
+    --bshlcolor=$white \
+    --blur 8 \
+    --veriftext="Checking ..." \
+    --wrongtext="Wrong." \
+    --clock \
+    --indicator \
+    --timestr="%H:%M:%S" \
+    --datestr="%A, %m %Y"
+}
+
+lock

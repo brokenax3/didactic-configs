@@ -1,0 +1,5 @@
+!#/bin/bash
+
+brightness=$(brightnessctl -d intel_backlight g)
+
+printf %.1f\\n "$(($brightness * 100/255))"

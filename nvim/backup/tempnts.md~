@@ -1,0 +1,64 @@
+# Framework
+- Fixed transmitter location, randomised receiver location (Localisation Part)
+    - Pre-made datasets for different groups/ students (Easier to maintain without error)
+    - Generated datasets for different groups/ students (High differential but higher possibility of error and time needed)
+- Transmitter will broadcast with set value choosing between $\pm 1 \rightarrow 2$ randomly
+    - Simulation of noise with sudden spikes with a range of $\pm 4 \rightarrow 8$
+- Part 1 (Without Introduction of Noise in Channel)
+    - Building/ Given Basic Channel Model
+        - Understanding Path Loss and the requirements of indoor localisation
+    - Localisation using Channel Model Built
+- Part 2 (With Introduction of Noise in Channel)
+    - Identifying the associated errors from indoor localisation
+    - Accuracy of indoor localisation and improvements that can be done
+
+## Work that will have to be done
+- Generating different datasets from a selected location
+- Experiment involving noise can have a simulated more noisy RSSI as receiver is at a larger distance from transmitter
+- Skeleton Code for plotting and importing the datasets provided
+
+# Experiment 
+
+## Introduction to Localisation using Trilateration and Received Signal Strength Indicator
+- Importance of non-gps localisation
+- Requirements to be satisfied before trilateration using RSSI measurements can be done
+
+## Building a Channel Model Plot based on the RSSI from one Transmitter and Receiver Pair
+- Given several datasets from obtaining RSSI at different distances between the Transmitter and Receiver
+- Import the data for processing in MATLAB
+    - Organising the data according to distances 
+        - Each distance will have data of 10 values
+- Plotting the Channel Model on MATLAB
+- Observation on the effect on distance on RSSI
+- Understanding the parameters used for Log-distance path loss model for localisation
+    - What values are required to be extracted from the channel model plot for localisation?
+
+## Localisation using the Channel Model Plot
+- Given RSSI measurements at different distances and fixed Transmitter location
+- Importing and organising the datasets for processing in MATLAB
+- Determine the location of the receiver measuring the RSSI provided using the Channel Model Plot
+- Plotting the location of transmitter and receiver
+
+## Building a Channel Model Plot based on the RSSI from one Transmitter and Receiver Pair (With Noise)
+- Similar method to the part without noise introduced
+- Observation on effect of noisy environments on RSSI
+
+## Localisation using the Channel Model Plot (With Noise)
+- Similar method to the part without noise introduced
+- Several different distances of Transmitter and Receiver locations tested
+- Identifying that the increasing distance between Transmitter and Receiver affects localisation accuracy
+- Measuring the absolute error and relative error of localisation in noisy environments
+
+# Hardware Section
+
+## Idea for Experimentation without being in the laboratory
+- Identifying the accuracy of 2-D indoor localisation with varying distances **(Not trilateration)**
+- Having access to a WiFi access point and phone to measure RSSI values
+    - Building a path loss model measuring actual distance and RSSI value obtained from mobile devices
+    - With varying distances, identify the error as distance from transmitter and receiver increases
+
+# Remarks
+1. Uncertain if the experiment might be too short
+2. The harder parts for the experiment might only be importing, organising the data and figuring out how the channel model plot can be used for localisation
+3. Experiment length can be increased with more datasets
+4. Note that transmitter with noise and without noise randomness is just a placeholder number and will be adjusted for more reasonable variations

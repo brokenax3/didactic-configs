@@ -1,0 +1,69 @@
+Way easier method to index, create notes.
+
+# University Key Dates
+Enrol Subjects      (7 Dec 2020)
+Orientation	        (23 Feb - 25 Feb 2021)
+Lectures Commence   (01 Mar - 16 Apr 2021)
+
+# TODO 
+- Learning sed, grep, awk and regex
+- [FZF Work flow](https://github.com/junegunn/fzf)
+- [Ubuntu Touch Port OP5T](code/ubtouchport.md)
+- [Great Resources List](grl.md)
+- Archlinux package maintaining
+
+# Ongoing Episodes
+
+## Anime
+
+## TV Series
+
+# Important Notes
+
+## Pandoc -> Pdf
+
+### Conversion Methods
+
+```bash
+pandoc --toc --toc-depth=4 -V geometry:margin=1in -f markdown-raw_tex -H disablefloat.tex labreport.md -o labreport.pdf
+
+pandoc --toc --toc-depth=4 --highlight-style haddock -V geometry:margin=1in -V mainfont='Liberation Sans' -V monofont='Iosevka' -f markdown-raw_tex -H disablefloat.tex report.md -o labreport.pdf --pdf-engine=xelatex
+```
+
+## Onedrive
+rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
+
+## BetterCap
+bettercap -caplet http-ui
+
+
+## SECTE 4th Year Details
+- [SECTE](engineering4thyear.md)
+
+# Index for Important Files
+- [Helpful Shortcuts](tech/linuxnotes.md)
+- [Trigonometry Cheat Sheet](engineering/trigcheatsheet.pdf)
+- [Z-Transform Formula](engineering/ztransform.pdf)
+
+# Engineering
+- [Lab Design Indoor Localisation](engineering/labrssilocalisation.md)
+- [Other Notes](engineering/othernotes.md)
+
+# Gym
+- [Calisthenics Program](gym/workoutprogram.md)
+
+# Technology
+- [Python Notes](tech/pythonNotes)
+
+# Entertainment
+- [Anime](entertainment/anime.md)
+- [TV Series](entertainment/tvseries)
+
+# Ongoing Projects
+- [Facial Recognition](code/facialRecognition) 
+- [Kotlin Learning](code/kotlin/notes.md)
+- [Telegram Assistant Bot](code/robotmark.md)
+
+# Misc
+- [Temporary Notes](tempnts.md)
+- [Belong Router](router.md)

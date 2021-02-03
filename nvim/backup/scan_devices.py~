@@ -1,0 +1,8 @@
+import nmap3
+
+nmap = nmap3.NmapHostDiscovery()
+result = nmap.nmap_no_portscan("10.0.0.*")
+
+print(result)
+
+

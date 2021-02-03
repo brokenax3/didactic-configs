@@ -1,3 +1,4 @@
+"             
 "                  ://.             
 "   :dhyyyyyyhhsymdyyyyyyymo`  
 "  `M+hNNNNNNNooh/yNNNNNNm/mo  
@@ -13,6 +14,7 @@
 "    oms++omh/:o+:omy.         
 "     `////-/mh/omy.           
 "             ://.
+"
 "
 autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
 set nocompatible
@@ -48,6 +50,8 @@ Plug 'SirVer/ultisnips'
 " Theme Plugins
 Plug 'itchyny/lightline.vim'
 Plug 'sainnhe/forest-night'
+Plug 'lifepillar/vim-solarized8'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 " FZF Plugins
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -78,9 +82,12 @@ set fileencoding=utf-8                  " The encoding written to file
 set ruler                               " Show the cursor position all the time
 set cmdheight=2                         " More space for displaying messages
 set iskeyword+=-                        " treat dash separated words as a word text object"
-set mouse=a                             " Enable your mouse
 set splitbelow                          " Horizontal splits will automatically be below
 set splitright                          " Vertical splits will automatically be to the right
+
+" Middle Selection Copy for nvim-qt
+set mouse=a                             " Enable your mouse
+vmap <LeftRelease> "*ygv
 
 " Support 256 colors
 set t_Co=256
@@ -121,6 +128,13 @@ au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm al
 " GUI Font
 set guifont=Input\ Mono\ Compressed:h13
 
+" Set Undo and Swap file
+set undodir=~/.local/share/nvim/undo//
+set backupdir=~/.local/share/nvim/backup//
+set directory=~/.local/share/nvim/swap//
+set undofile
+set backup
+
 "----------------------------------------------------------------------------------
 " Mappings {{{1
 "----------------------------------------------------------------------------------
@@ -139,6 +153,12 @@ nnoremap <silent> <leader>e :Buffers<CR>
 nnoremap <silent> <leader>pp :Pandoc! pdf --toc --toc-depth=4 -V geometry:margin=1in -f markdown-raw_tex<CR>
 nnoremap <silent> <leader>pd :Pandoc! docx -V geometry:margin=1in -f markdown-raw_tex<CR>
 
+" Spelling Correction
+" Correct previous spelling error
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+" Correct capitalisation
+inoremap <C-k> <c-g>u<Esc>b~$a<c-g>u
+
 " Theme Settings {{{1
 "----------------------------------------------------------------------------------
 "
@@ -146,12 +166,11 @@ if has('termguicolors')
   set termguicolors
 endif
 
-let g:forest_night_enable_italic = 1
-let g:forest_night_disable_italic_comment = 1
-colorscheme forest-night
+colorscheme dracula
 
-let g:lightline = {}
-let g:lightline.colorscheme = 'forest_night'
+let g:lightline = {
+      \ 'colorscheme': 'dracula',
+      \ }
 
 "----------------------------------------------------------------------------------
 " Vim-Pandoc-Markdown {{{1
@@ -164,10 +183,11 @@ let g:pandoc#folding#fastfolds = 1
 let g:pandoc#folding#mode = 'syntax'
 let g:pandoc#folding#use_foldtext = 0
 let g:pandoc#folding#fdc = 0
-let g:pandoc#syntax#codeblocks#embeds#langs = ["c", "asm", "bash=sh", "python", "java"]
+let g:pandoc#syntax#codeblocks#embeds#langs = ["c", "asm", "bash=sh", "python", "java", "kotlin"]
 let g:pandoc#hypertext#create_if_no_alternates_exists = 1
 let g:pandoc#folding#fold_fenced_codeblocks = 1
-
+" Let Markdown Preview Work with Pandoc Files
+let g:mkdp_command_for_global = 1
 "----------------------------------------------------------------------------------
 " Markdown-Preview {{{1
 "----------------------------------------------------------------------------------
@@ -213,13 +233,12 @@ inoremap <expr> <Down> pumvisible() ? '<c-y><Down>' : '<Down>'
 "----------------------------------------------------------------------------------
 " UltiSnips {{{1
 "----------------------------------------------------------------------------------
-" Trigger configuration. You need to change this to something else than <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<a-w>"
 let g:UltiSnipsJumpForwardTrigger="<a-w>"
 let g:UltiSnipsJumpBackwardTrigger="<a-b>"
 
 "----------------------------------------------------------------------------------
-" Suda VIM
+" Suda VIM {{{1
 "----------------------------------------------------------------------------------
 let g:suda#prompt = 'Magic Words: '
 let g:suda_smart_edit = 1

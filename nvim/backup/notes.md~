@@ -1,0 +1,110 @@
+Kotlin Notes
+
+# Data types
+
+## Mutable and Immutable Variables
+- Immutable Variables (Fixed Variable)
+    - Legible
+    - Testable
+    - Thread-safe
+
+## Data types
+- Type "Any"
+    - If expression in variables able to return any datatypes
+    ```kotlin
+    val bucket:Any = if(number > 100){
+            "alpha"
+        }else if(number > 90){
+            println("Less than 90")
+            2
+        }else {
+            0
+        }
+    ```
+
+## Enumerate
+```kotlin
+enum class Suit{
+    Club, Diamond, Spade, Heart
+}
+```
+
+# Control Flow
+
+## If Expression
+- Can be done within a variable declaration
+
+```kotlin
+val isGreater = if(number > 100) true else false
+val isGreater = number > 100 // Same as the expression above
+```
+
+## When Expression
+- Able to compare many data types
+```kotlin
+val x = 1
+when(x){
+    1 -> println("x == 1")
+    2 -> println("x == 2")
+    3,4 -> println("x == 3 or 4")
+}
+
+val card = Suit.spade
+val y = when(card){
+    Suit.Club, Suit.Spade -> println("Black Card")
+    Suit.Diamond, Suit.Heart -> println("Red Card")
+}
+```
+- Must be exhaustive
+```kotlin
+val test = when(name){
+    else -> {
+        "Unknown"
+    }
+```
+- Range of numbers
+```kotlin
+val age = 10
+val number = when(age){
+    in 0..1 -> "Baby"
+    in 2..5 -> "Teen"
+    else -> "Senior"
+}
+```
+
+## Loops
+- Iterating over a range of values
+```kotlin
+for(i in 1..10){
+    println("i = $i")
+}
+```
+- Iterating over a collection
+```kotlin
+val students = listOf("Janet", "Daisy", "Veronica")
+
+for(student in students){
+    println("Current student is $student")
+}
+```
+- Similar syntax for "While", "Do While", "Break", "Continue"
+
+## Null and Smart Casting
+- Null-able type
+```kotlin
+val greeting:String? = "Hello there"
+if(gretting != null){
+    println("Joe says: $greeting")
+}
+
+println("Greeting length = ${greeting.length}")     // Without Safe-call operator
+println("Greeting length = ${greeting?.length}")    // With Safe-call operator
+
+val len = greeting?.length ?: 0 // Elvis operator
+print("Length = $len")
+
+val badLen = greeting!!.length  // Forcing Kotlin to ignore error on compile time
+
+val safeGreeting: String? = greeting as? String // Safe Casting returns a null when casting not allowed
+```
+

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+python3 schedule_message.py & 
+
+while true; do
+    echo "Started Robot Mark."
+    python3 test_bot.py
+    echo "Robot Mark Stopped."
+    pkill -f python3
+
+    sleep 3
+done

@@ -1,0 +1,42 @@
+#!/bin/bash
+
+echo "Starting pdfsort ... "
+
+echo "Check for previous instances and killing them ..."
+
+PIDS=`ps cax | grep inotifywait | grep -o '^[ ]*[0-9]*'` 
+
+if [ ! -z "$PIDS" ]; then
+    for PID in $PIDS; do
+        kill $PID
+    done
+fi
+
+# Set some path variables
+path=$HOME/Downloads
+tmp=/tmp/pdfDirectory
+
+inotifywait -m --format "%f" -e moved_to "$path" | while read file;do
+
+    # Prevents looping Chrome as it keeps downloading the same file and opening it
+    #   without opening it.
+    if [[ $prevfile != $file ]];then
+
+        if [[ $file == *.pdf ]];then
+            
+            if [[ ! -d "$tmp" ]];then mkdir "$tmp";fi
+
+            mv "$path/$file" "$tmp/$file"
+            nohup xdg-open "$tmp/$file" &> /dev/null &
+            notify-send -t 5000 "$file opened in Zathura"
+            prevfile=$file
+        fi
+    else
+
+        # Remove the Old File and Open the Newly downloaded file
+        rm "$tmp/$file"
+        mv "$path/$file" "$tmp/$file"
+        nohup xdg-open "$tmp/$file" &> /dev/null &
+        notify-send -t 5000 "$file opened in Zathura"
+    fi
+done

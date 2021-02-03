@@ -1,0 +1,59 @@
+# Belong Router Commands and Defaults
+
+- Check Management Server
+```
+xmo-client -g -p "Device/ManagementServer/URL"
+```
+
+Output :
+
+```
+path : Device/ManagementServer/URL
+value : 'https://blg-f4353.ax.belong.com.au'
+```
+
+- Restore Management Server
+```
+xmo-client -s "https://blg-f4353.ax.belong.com.au" -p "Device/ManagementServer/URL"
+```
+
+- Print CPU Information
+```
+cat /proc/cpuinfo
+```
+
+While in `su` with password `root`
+
+- Get DNS Server Currently Used
+```
+xmo-client -g -p 'Device/DHCPv4/Server/Pools/Pool[@uid="1"]/DNSServers'
+```
+
+- Changing DNS Servers
+```
+xmo-client -s "8.8.8.8, 8.8.4.4" -p 'Device/DHCPv4/Server/Pools/Pool[@uid="1"]/DNSServers'
+```
+
+- CWMP Check with ISP Server
+```
+xmo-client -s false -p "Device/ManagementServer/EnableCWMP"
+```
+
+- Checking Port that ISP App Update Listens on
+```
+xmo-client -g -p "Device/ManagementServer/TR69InternalData/Settings/Port"
+```
+
+Output :
+
+```
+path : Device/ManagementServer/TR69InternalData/Settings/Port
+value : '50805'
+```
+
+- Change Port that ISP App Update Listens on
+
+```
+xmo-client -s 50806 -p "Device/ManagementServer/TR69InternalData/Settings/Port"
+```
+

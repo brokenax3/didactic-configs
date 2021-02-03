@@ -1,0 +1,62 @@
+public class BandMember{
+
+    private String name;
+    private String instrument;
+    public String[] legalInstrument = {"trumpet", "saxophone", "clarinet", "drums", "guitar"};
+    public BandMember(String name, String instrument){
+
+        this.setName(name);
+
+        try{
+            this.setInstrument(instrument);
+        }catch(IllegalArgumentException i){
+            System.out.println("invalid instrument");
+        }
+
+    }
+
+    public void setName(String n){
+
+        this.name = n;
+    }
+
+    public void setInstrument(String inst){
+        
+        int count = 0;
+
+        for(String item : this.legalInstrument){
+            if(inst.equals(item)){
+                count++;
+            }
+        }
+        if(count == 0){
+
+            throw new IllegalArgumentException(inst);
+        }else{
+
+            this.instrument = inst;
+        }
+}
+    
+    public String getName(){
+
+        return this.name;
+    }
+
+    public String getInstrument(){
+
+        return this.instrument;
+    }
+
+
+    public static void main(String[] args) {
+
+        BandMember new_member = new BandMember("Lee Morgan", "trumpet");
+        BandMember new_member2 = new BandMember("Lee", "saxophone");
+        BandMember new_member3 = new BandMember("Lee", "lanjiao");
+        System.out.println(new_member.getName() + " " + new_member.getInstrument());
+        System.out.println(new_member2.getName() + " " + new_member2.getInstrument());
+        System.out.println(new_member3.getName() + " " + new_member3.getInstrument());
+    }
+}
+

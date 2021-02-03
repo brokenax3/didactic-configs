@@ -11,23 +11,23 @@
     scrollbar: true;
 
     /* Colors */
-    bg0-hard:     #323d43;
-    bg0:          #323d43;
-    bg2:          #465258;
-    fg0:          #d8caac;
-    fg1:          #7c8377;
-    red-dark:     #614b51;
-    red-light:    #e68183;
-    green-dark:   #4e6053;
-    purple-dark:  #5d4251;
-    purple-light: #d39bb6;
-    gray:         #999f93;
-    cyan:         #87c095;
+    bg0-hard:     #161315;
+    bg0:          #282a36;
+    bg2:          #44475a;
+    fg0:          #f8f8f2;
+    fg1:          #70706D;
+    red-dark:     #ff5555;
+    ed-light:    #ff5555;
+    green-dark:   #50fa7b;
+    purple-dark:  #bd93f9;
+    purple-light: #bd93f9;
+    gray:         #6272a4;
+    cyan:         #8be9fd;
 
     /* Theme colors */
     background:                  @bg0-hard;
     background-color:            @background;
-    foreground:                  @fg1;
+    foreground:                  @bg0-hard;
     border-color:                @cyan;
     separatorcolor:              @border-color;
     scrollbar-handle:            @border-color;
@@ -37,7 +37,7 @@
     alternate-normal-background: @bg0;
     alternate-normal-foreground: @foreground;
     selected-normal-background:  @purple-dark;
-    selected-normal-foreground:  @fg0;
+    selected-normal-foreground:  @fg1;
 
     active-background:           @green-dark;
     active-foreground:           @cyan;
