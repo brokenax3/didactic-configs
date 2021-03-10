@@ -3,16 +3,13 @@
 # Bash Script Wrapper for PDF-Grep
 
 # Request Directory
-directory(){
+reqdirectory(){
 
     while :;do
     # Option Selecions
         case $select in
 
-        "-d") echo -n "Input Directory : "
-            read "directory"
-
-            if [ -d "$directory" ]; then
+        "-d") if [ -d "$directory" ]; then
 
                 echo "Found $directory."
                 file=$directory
@@ -20,11 +17,10 @@ directory(){
             else
 
                 echo "Directory not found."
+                exit
             fi
             ;;
-        "-f") echo -n "Input File : "
-            read "file"
-            if [ -f "$file" ]; then
+        "-f") if [ -f "$file" ]; then
 
                 echo "Found $file."
                 option=""
@@ -32,11 +28,12 @@ directory(){
             else
 
                 echo "File not found."
+                exit
             fi
             ;;
         *) echo "--------------------- Help --------------------"
             echo -e "searchpdf [option]\n"
-            echo -e "Options :\n\t -f Search file\n\t -d Search directory\n"
+            echo -e "Options :\n\t -f <FILENAME> Search file\n\t -d <DIRECTORY> Search directory\n"
             exit
             ;;
         esac
@@ -71,7 +68,9 @@ main(){
 
 # Actual Execution
 select=$1
-directory
+file=$2
+directory=$file
+reqdirectory
 
 while :;do
     

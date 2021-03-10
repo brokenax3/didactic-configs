@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # The name of polybar bar which houses the main spotify module and the control modules.
-PARENT_BAR="now-playing"
+PARENT_BAR="example"
 PARENT_BAR_PID=$(pgrep -a "polybar" | grep "$PARENT_BAR" | cut -d" " -f1)
 
 # Set the source audio player here.
@@ -18,10 +18,9 @@ FORMAT="{{ title }} - {{ artist }}"
 
 # Sends $2 as message to all polybar PIDs that are part of $1
 update_hooks() {
-    while IFS= read -r id
-    do
+    for id in $PARENT_BAR_PID; do
         polybar-msg -p "$id" hook spotify-play-pause $2 1>/dev/null 2>&1
-    done < <(echo "$1")
+    done
 }
 
 PLAYERCTL_STATUS=$(playerctl --player=$PLAYER status 2>/dev/null)
@@ -39,7 +38,7 @@ else
     if [ "$STATUS" = "Stopped" ]; then
         echo "No music is playing"
     elif [ "$STATUS" = "Paused"  ]; then
-        update_hooks "$PARENT_BAR_PID" 0
+        update_hooks "$PARENT_BAR_PID" 2
         playerctl --player=$PLAYER metadata --format "$FORMAT"
     elif [ "$STATUS" = "No player is running"  ]; then
         echo "$STATUS"

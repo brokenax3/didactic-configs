@@ -2,4 +2,5 @@
 " see https://github.com/equalsraf/neovim-qt/issues/219
 if exists('g:GuiLoaded')
   GuiTabline 1
+  GuiFont! Terminus:h12
 endif

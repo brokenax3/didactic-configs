@@ -46,12 +46,12 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " Vim Snippets Plugins
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Theme Plugins
 Plug 'itchyny/lightline.vim'
-Plug 'sainnhe/forest-night'
-Plug 'lifepillar/vim-solarized8'
-Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'arzg/vim-substrata'
+Plug 'cocopon/iceberg.vim'
 
 " FZF Plugins
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -73,7 +73,10 @@ let g:mapleader = "\<Space>"
 " Several QOS Settings
 syntax enable                           " Enables syntax highlighing
 set hidden                              " Required to keep multiple buffers open multiple buffers
+" set spell
+" set spellfile=~/.config/nvim/spell/en.utf-8.add\
 set spelllang=en_au
+" let g:spellfile_URL = 'https://ftp.nluug.nl/vim/runtime/spell'
 set wildmenu                            " Better command-line completion
 set showcmd                             " Show partial commands in the last line of the screen
 set encoding=utf-8                      " The encoding displayed
@@ -84,6 +87,7 @@ set cmdheight=2                         " More space for displaying messages
 set iskeyword+=-                        " treat dash separated words as a word text object"
 set splitbelow                          " Horizontal splits will automatically be below
 set splitright                          " Vertical splits will automatically be to the right
+set title                               " Let GUI window title to be the file name
 
 " Middle Selection Copy for nvim-qt
 set mouse=a                             " Enable your mouse
@@ -126,7 +130,8 @@ au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm al
 " cmap w!! w !sudo tee %
 
 " GUI Font
-set guifont=Input\ Mono\ Compressed:h13
+" set guifont=Input\ Mono\ Compressed:h13
+" set guifont=scientifica:h13
 
 " Set Undo and Swap file
 set undodir=~/.local/share/nvim/undo//
@@ -134,6 +139,21 @@ set backupdir=~/.local/share/nvim/backup//
 set directory=~/.local/share/nvim/swap//
 set undofile
 set backup
+
+" Make :grep use ripgrep
+if executable('rg')
+    set grepprg=rg\ --pretty\ --vimgrep
+endif
+
+" Don't mark URL-like things as spelling errors
+syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
+
+" Don't count acronyms / abbreviations as spelling errors
+ " (all upper-case letters, at least three characters)
+ " Also will not count acronym with 's' at the end a spelling error
+ " Also will not count numbers that are part of this
+ " Recognizes the following as correct:
+syn match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
 
 "----------------------------------------------------------------------------------
 " Mappings {{{1
@@ -154,10 +174,30 @@ nnoremap <silent> <leader>pp :Pandoc! pdf --toc --toc-depth=4 -V geometry:margin
 nnoremap <silent> <leader>pd :Pandoc! docx -V geometry:margin=1in -f markdown-raw_tex<CR>
 
 " Spelling Correction
+"
 " Correct previous spelling error
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 " Correct capitalisation
 inoremap <C-k> <c-g>u<Esc>b~$a<c-g>u
+
+" QOL Shortcuts
+"
+" Notes Index Shortcut
+command! Nindex :e ~/git/effective-train/index.md
+nnoremap <silent> <leader>ne :Nindex<CR>
+
+" Quickfix List
+"
+" Searching the notes directory with <args> and ripgrep
+command! -nargs=1 Ngrep grep "<args>" -g "*.md" ~/git/effective-train
+nnoremap <leader>nn :Ngrep 
+" Making a vertical buffer on the right
+command! Vlist botright vertical copen | vertical resize 40
+" Quickfix buffer on whatever that was searched
+nnoremap <leader>v :Vlist<CR>
+" Prints the TODO list with ripgrep
+nnoremap <leader>nt :Ngrep TODO<CR> :Vlist<CR>
+nnoremap <leader>c :cclose<CR>
 
 " Theme Settings {{{1
 "----------------------------------------------------------------------------------
@@ -166,10 +206,10 @@ if has('termguicolors')
   set termguicolors
 endif
 
-colorscheme dracula
+colorscheme iceberg
 
 let g:lightline = {
-      \ 'colorscheme': 'dracula',
+      \ 'colorscheme': 'iceberg',
       \ }
 
 "----------------------------------------------------------------------------------
@@ -186,6 +226,7 @@ let g:pandoc#folding#fdc = 0
 let g:pandoc#syntax#codeblocks#embeds#langs = ["c", "asm", "bash=sh", "python", "java", "kotlin"]
 let g:pandoc#hypertext#create_if_no_alternates_exists = 1
 let g:pandoc#folding#fold_fenced_codeblocks = 1
+" let g:pandoc#spell#enabled = 0
 " Let Markdown Preview Work with Pandoc Files
 let g:mkdp_command_for_global = 1
 "----------------------------------------------------------------------------------
@@ -193,6 +234,10 @@ let g:mkdp_command_for_global = 1
 "----------------------------------------------------------------------------------
 let g:mkdp_browser = 'google-chrome-stable'
 let g:mkdp_auto_close = 0
+" use a custom markdown style must be absolute path
+" like '/Users/username/markdown.css' or expand('~/markdown.css')
+let g:mkdp_markdown_css = '/home/mark/.local/share/nvim/plugged/markdown-preview.nvim/markdown.css'
+let g:mkdp_highlight_css = '/home/mark/.local/share/nvim/plugged/markdown-preview.nvim/highlight.js/src/styles/solarized-light.css'
 let g:mkdp_preview_options = {
     \ 'mkit': {},
     \ 'katex': {},

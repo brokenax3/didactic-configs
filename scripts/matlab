@@ -1,0 +1,4 @@
+#!/bin/bash
+export GTK_PATH=/usr/lib/gtk-2.0
+exec /externalDrive/Programs/Matlab/bin/matlab -desktop -nosplash
+

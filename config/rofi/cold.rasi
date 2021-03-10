@@ -1,0 +1,185 @@
+/* ==========================================================================
+   Rofi color theme
+
+   Based on the Iceberg color scheme for Vim.
+
+   ========================================================================== */
+
+* {
+    /* Theme settings */
+    highlight: bold underline #e39b7b;
+    scrollbar: true;
+
+    /* Colors */
+    bg0-hard:     #161820;
+    bg0:          #1E2131;
+    bg2:          #2A3155;
+    fg0:          #CDD1E4;
+    fg1:          #A1A4B3;
+    red-dark:     #D47D7B; 
+    red-light:    #D47D7B;
+    orange-dark:   #D9A67F;
+    pink-dark:    #9D94C3;
+    pink-light:   #9D94C3;
+    gray:         #444A66;
+    blue:         #89A0C3;
+
+    /* Theme colors */
+    background:                  @bg0-hard;
+    background-color:            @background;
+    foreground:                  @fg0;
+    border-color:                @blue;
+    separatorcolor:              @border-color;
+    scrollbar-handle:            @border-color;
+
+    normal-background:           @background;
+    normal-foreground:           @foreground;
+    alternate-normal-background: @bg0;
+    alternate-normal-foreground: @foreground;
+    selected-normal-background:  @pink-dark;
+    selected-normal-foreground:  @bg0-hard;
+
+    active-background:           @orange-dark;
+    active-foreground:           @bg0-hard;
+    alternate-active-background: @active-background;
+    alternate-active-foreground: @active-foreground;
+    selected-active-background:  @pink-dark;
+    selected-active-foreground:  @bg2;
+
+    urgent-background:           @red-dark;
+    urgent-foreground:           @background;
+    alternate-urgent-background: @urgent-background;
+    alternate-urgent-foreground: @urgent-foreground;
+    selected-urgent-background:  @red-light;
+    selected-urgent-foreground:  @urgent-foreground;
+
+    spacing: 0;
+    /* font: "Input Sans Compressed 13";*/
+    text-color: @fg1;
+
+}
+
+window {
+    transparency: "real";
+    background-color: @background;
+    border:           2;
+    padding:          2;
+}
+
+mainbox {
+    border:  0;
+    padding: 0;
+}
+
+message {
+    border:       2px 0 0;
+    border-color: @separatorcolor;
+    padding:      1px;
+}
+
+textbox {
+    highlight:  @highlight;
+    text-color: @foreground;
+}
+
+listview {
+    border:       2px solid 0 0;
+    padding:      2px 0 0;
+    border-color: @separatorcolor;
+    spacing:      2px;
+    scrollbar:    @scrollbar;
+}
+
+element {
+    border:  0;
+    padding: 2px;
+}
+
+element.normal.normal {
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
+}
+
+element.normal.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
+}
+
+element.normal.active {
+    background-color: @active-background;
+    text-color:       @active-foreground;
+}
+
+element.selected.normal {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+
+element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color:       @selected-urgent-foreground;
+}
+
+element.selected.active {
+    background-color: @selected-active-background;
+    text-color:       @selected-active-foreground;
+}
+
+element.alternate.normal {
+    background-color: @alternate-normal-background;
+    text-color:       @alternate-normal-foreground;
+}
+
+element.alternate.urgent {
+    background-color: @alternate-urgent-background;
+    text-color:       @alternate-urgent-foreground;
+}
+
+element.alternate.active {
+    background-color: @alternate-active-background;
+    text-color:       @alternate-active-foreground;
+}
+
+scrollbar {
+    width:        4px;
+    border:       0;
+    handle-color: @scrollbar-handle;
+    handle-width: 8px;
+    padding:      0;
+}
+
+sidebar {
+    border:       2px 0 0;
+    border-color: @separatorcolor;
+}
+
+inputbar {
+    spacing:    0;
+    text-color: @pink-light;
+    padding:    2px;
+    children:   [prompt, textbox-prompt-sep, entry, case-indicator];
+}
+
+case-indicator,
+entry,
+prompt,
+button {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+
+button.selected {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+
+textbox-prompt-sep {
+    expand:     false;
+    str:        " > ";
+    text-color: @pink-light;
+    margin:     0 0.3em 0 0;
+}
+
+prompt {
+    text-color: @pink-light;
+}

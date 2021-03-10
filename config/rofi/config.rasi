@@ -1,9 +1,9 @@
 configuration {
 /*	modi: "window,run,ssh";*/
-	width: 30;
-/*	lines: 15;*/
+	width: 25;
+	lines: 10;
 /*	columns: 1;*/
-/*	font: "mono 12";*/
+	font: "Terminus 12";
 /*	bw: 1;*/
 /*	location: 0;*/
 	padding: 5;
@@ -49,13 +49,13 @@ configuration {
 /*	fake-transparency: false;*/
 /*	dpi: -1;*/
 /*	threads: 0;*/
-/*	scrollbar-width: 8;*/
+	scrollbar-width: 1;
 /*	scroll-method: 0;*/
 /*	fake-background: "screenshot";*/
 /*	window-format: "{w}    {c}   {t}";*/
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
-	theme: "dracula";
+	theme: "cold";
 /*	color-normal: ;*/
 /*	color-urgent: ;*/
 /*	color-active: ;*/
@@ -149,4 +149,4 @@ configuration {
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
 
-@import "dracula.rasi"
+@import "cold.rasi"

@@ -1,8 +1,8 @@
 [global]
-    frame_width = 1
+    frame_width = 2
     frame_color = "#ff79c6"
     
-    font = Input Mono Compressed 12
+    font = Scientifica 13
     
     # Allow a small subset of html markup:
     #   <b>bold</b>
