@@ -12,9 +12,10 @@ echo "---" | tee -a /tmp/polybar1.log
 
 if type "xrandr"; then
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-    MONITOR=$m polybar --reload example & disown
+    #MONITOR=$m polybar --reload example & disown
+    echo "Bar $m launched."
   done
 else
-  polybar --reload example & disown
+  # polybar --reload example & disown
 fi
 echo "Bars launched..."
